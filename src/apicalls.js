@@ -25,7 +25,7 @@ export const getAllTodoList = async () => {
   ).json();
 };
 
-export const createTask = async (title) => {
+export const createItem = async (title) => {
   return (
     await fetch("http://localhost:8000/api/task-create/", {
       method: "POST",
@@ -38,7 +38,7 @@ export const createTask = async (title) => {
   ).json();
 };
 
-export const updateStatus = async (id, title, completed) => {
+export const updateItem = async (id, title, completed) => {
   return (
     await fetch(`http://localhost:8000/api/task-update/${id}/`, {
       method: "POST",
@@ -47,6 +47,18 @@ export const updateStatus = async (id, title, completed) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ title, completed }),
+    })
+  ).json();
+};
+
+export const deleteItem = async (id) => {
+  return (
+    await fetch(`http://localhost:8000/api/task-delete/${id}/`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     })
   ).json();
 };
